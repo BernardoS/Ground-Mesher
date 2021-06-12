@@ -1,0 +1,221 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: #2A2626;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #f6f6f6;
+    border:0px;
+}
+.header-logo{
+    height: 35vh;
+}
+.line{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    height: 30vh;
+    width: 0px;
+    border:.5px solid #3066A4;
+}
+.right-section{
+    width: 50%;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.right-section h1{
+    font-size: 6vw;
+    color:#2A2626;
+}
+.right-section h3{
+    color:#2A2626;
+}
+label{
+    font-size: 1.5vw;
+    font-weight: bold;
+    color:#2A2626;
+    margin:10px 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+.left-section{
+    width: 50%;
+    padding: 0 1vw;
+}
+.left-section form{
+    display: flex;
+    flex-direction: column;
+}
+.card h2{
+    color: #2A2626;
+    font-family: 'Montserrat', sans-serif;
+}
+.input-text{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: #f6f6f6;
+    height:6vh;
+    border-radius: 6px;
+    border: 0px;
+    padding: 0 20px;
+    font-size: 20px;
+    color: #2A2626;
+}
+.input-button{
+    margin:3vh 0px;
+    border-radius: 6px;
+    border: 0px;
+    padding:1vh 3vw;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    align-self: center;
+    background-color: #022365;
+    color: #91b4f1;
+    font-size: 3vw;
+    transition: 0.1s;
+}
+.input-button:hover{
+    background-color: #0035a0;
+}
+.input-button:active{
+    background-color: #0147d3;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #528DF1;
+    border-radius: 5px;
+    border:0px;
+    margin-top: 30px;
+}
+.content-section{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+}
+#ResistividadeCard{
+    display: flex;
+}
+.center-section h3{
+    color:#2A2626;
+    font-family: 'Montserrat', sans-serif;
+}
+.center-section h1{
+    font-size: 6vw;
+    color:#2A2626;
+    font-family: 'Montserrat', sans-serif;
+}
+.center-section label{
+    font-size: 1.5vw;
+    font-weight: bold;
+    color:#2A2626;
+    margin:auto;
+    font-family: 'Montserrat', sans-serif;
+}
+.center-section{
+    display: flex ;
+    margin:auto;
+    padding: 0 1vw;
+    flex-direction: column;
+    align-items: center;
+}
+.center-section form{
+    display: flex;
+    flex-direction: column;
+}
+.center-section form .input-text{
+    margin-right: 0px;
+}
+#resultados{
+    display: none;
+}
+#configHasteLinear{
+    display: none;
+}
+#configHasteCircular{
+    display: none;
+}
+#menuArranjo{
+    display: none;
+}
+#continuarButton{
+    display: none;
+}
+#abreMenu{
+    display: flex;
+}
+#configHasteTriangulo{
+    display: none;
+}
+#configHasteQuadrado{
+    display: none;
+}
+#configHasteMalha{
+    display: none;
+}
+.footer{
+    margin-top: 300px;
+    margin-bottom: 0px;
+    font-family:'Montserrat', sans-serif; 
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.footer h1,h2{
+    color:#2A2626;
+}  
+.footer h1{
+    font-size:24px ;
+}
+.footer h2{
+    font-size:14px ;
+}
+.footer-logo{
+    height: 85px;
+    margin-right: 30px;
+    margin-left: 150px;
+}
+#unidadeResistencia{
+    font-size: 100px;
+    color:#2A2626;
+    font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+#ResistenciaEquivalente{
+    font-size: 100px;
+    color:#2A2626;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+#Resultado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#canvas{
+    transform: rotateX(180deg);
+}
+.container{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid #2A2626;
+    width: fit-content;
+}

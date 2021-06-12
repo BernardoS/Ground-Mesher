@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Ground Mesher</title>
+    <link rel="shortcut icon" href="Icon.ico" />
+</head>
+<body>
+    <script src="index.js"></script>
+    <div class="page-header">
+        <img class="header-logo" src="Banner_logo.png"/>
+    </div>
+    <div id="ResistividadeCard" class="card">
+        <h2>Cálculo da Resistividade da Haste</h2>
+        <div class="content-section">
+            <div class="left-section">
+                <form>
+                    <label>Resistividade aparente do solo [&#8486;/m]</label>
+                    <input class="input-text" id="ResistividadeSolo" type="text"/>
+                    <label>Comprimento da haste[m]</label>
+                    <input class="input-text" id="ComprimentoHaste" type="text"/>
+                    <label>Diâmetro da haste['']</label>
+                    <input class="input-text" id="DiametroHaste" type="text"/>
+                    <input class="input-button" type="button" value="Calcular" onClick="calculaRHaste()"/>
+                </form>
+            </div>
+            <div class="line"></div>
+            <div class="right-section">
+                <h3>Resultado do Cálculo</h3>
+                <h1 id="ResistividadeHaste">...</h1>
+                <button id="continuarButton" class="input-button" onClick="abrirMenu()">Continuar</button>
+            </div>
+        </div>
+    </div>
+    <div id="menuArranjo" class="card">
+        <h2>Escolha o Arranjo das Hastes de Aterramento</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label>Tipo de Sistema</label>
+                    <select class="input-text" name="tiposAterramento" id="tiposAterramento">
+                        <option value="linear" selected>Linear</option>
+                        <option value="circular">Circular</option>
+                        <option value="quadrado">Quadrado</option>
+                        <option value="malha">Malha</option>
+                        <option value="triangulo">Triangulo</option>
+                      </select>
+                    <input class="input-button" type="button" value="Processar" onClick="processaMenu()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+    <div id="configHasteLinear" class="card">
+        <h2>Arranjo Linear</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label> Número de hastes</label>
+                    <input class="input-text" id="QtdHastesLinear" type="text"/>
+                    <label> Distância entre as hastes</label>
+                    <input class="input-text" id="DistanciaHasteLinear" type="text"/>
+                    <input class="input-button" type="button" value="Processar" onClick="processaHasteLinear()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+
+    <div id="configHasteCircular" class="card">
+        <h2>Arranjo Circular</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label> Número de hastes</label>
+                    <input class="input-text" id="QtdHastesCircular" type="text"/>
+                    <label>Raio da Circunferência</label>
+                    <input class="input-text" id="RaioCirculo" type="text"/>
+                    <input class="input-button" type="button" value="Processar" onClick="processaHasteCircular()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+
+    <div id="configHasteTriangulo" class="card">
+        <h2>Arranjo Triangular</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label> Número de hastes</label>
+                    <input class="input-text" id="QtdHastesTriangular" type="text"/>
+                    <label> Distância entre as hastes</label>
+                    <input class="input-text" id="DistanciaHasteTriangular" type="text"/>
+                    <input class="input-button" type="button" value="Processar" onClick="processaHasteTriangular()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+
+
+    <div id="configHasteQuadrado" class="card">
+        <h2>Arranjo Quadrado</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label> Número de hastes</label>
+                    <input class="input-text" id="QtdHastesQuadrado" type="text"/>
+                    <label> Distância entre as hastes</label>
+                    <input class="input-text" id="DistanciaHasteQuadrado" type="text"/>
+                    <input class="input-button" type="button" value="Processar" onClick="processaHasteQuadrado()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+
+    <div id="configHasteMalha" class="card">
+        <h2>Arranjo em Malha Quadrada</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <form>
+                    <label> Número de hastes</label>
+                    <input class="input-text" id="QtdHastesMalha" type="text"/>
+                    <label> Distância entre as hastes</label>
+                    <input class="input-text" id="DistanciaHasteMalha" type="text"/>
+                    <input class="input-button" type="button" value="Processar" onClick="processaHasteMalha()"/>
+                </form>
+            </div>           
+        </div>
+    </div>
+    
+    <div id="resultados" class="card">
+        <h2>Resultados</h2>
+        <div class="content-section">
+            <div class="center-section">
+                <h3>Resultado do Cálculo</h3>
+                <div id="Resultado"><p id="ResistenciaEquivalente">...</p><b id="unidadeResistencia">[&#8486;]</b></div>
+                <div class="container">
+                    <canvas id="canvas" width="500" height="500">
+            
+                    </canvas>
+                </div>
+                <button id="abreMenu" class="input-button" onClick="voltarAoInicio()">Voltar</button>
+            </div>           
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            <img class="footer-logo" src="Icon.png"/>
+        </div>
+        <div>
+            <h1>Trabalho da Matéria de Aterramentos Elétricos</h1>
+            <h2><b>Alunos:</b>Bernardo Souza Ferreira da Silva e Iago Rodrigues Souza</h2>
+        </div> 
+    </div>
+</body>
+</html>
