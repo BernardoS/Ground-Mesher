@@ -259,6 +259,29 @@ function exibeResultado(resultado,classe){
 function voltarAoInicio(){
     document.getElementById("ResistividadeCard").style.display = "flex";
     document.getElementById("resultados").style.display = "none";
+    document.getElementById("menuArranjo").style.display = "none";
+    document.getElementById("configHasteCircular").style.display = "none";
+    document.getElementById("configHasteLinear").style.display = "none";
+    document.getElementById("configHasteQuadrado").style.display = "none";
+    document.getElementById("configHasteMalha").style.display = "none";
+    document.getElementById("configHasteTriangulo").style.display = "none";
+    document.getElementById("ResistividadeSolo").value = null;
+    document.getElementById("ComprimentoHaste").value = null;
+    document.getElementById("DiametroHaste").value = null;
+    document.getElementById("QtdHastesCircular").value = null;
+    document.getElementById("QtdHastesLinear").value =  null;
+    document.getElementById("QtdHastesMalha").value = null;
+    document.getElementById("QtdHastesTriangular").value = null;
+    document.getElementById("QtdHastesQuadrado").value = null;
+    document.getElementById("DistanciaHasteTriangular").value = null;
+    document.getElementById("DistanciaHasteLinear").value = null;
+    document.getElementById("DistanciaHasteQuadrado").value = null;
+    document.getElementById("RaioCirculo").value = null;
+    document.getElementById("QtdHastesMalha").value = null;
+    document.getElementById("ResistividadeHaste").innerText = "...";
+    
+    
+
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
