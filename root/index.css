@@ -196,6 +196,12 @@ label{
     font-family: 'Montserrat', sans-serif;
     display: none;
 }
+#unidadeResistenciaHaste{
+    font-size: 100px;
+    color:#2A2626;
+    font-family: 'Montserrat', sans-serif;
+    display: none;
+}
 #ResistenciaEquivalente{
     font-size: 100px;
     color:#2A2626;
@@ -208,6 +214,13 @@ label{
     align-items: center;
     justify-content: center;
 }
+#RestultadoHaste{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 #canvas{
     transform: rotateX(180deg);
 }

@@ -11,11 +11,13 @@ function calculaRHaste(){
         var RHaste = (ResistividadeSolo/(2*Math.PI*ComprimentoHaste))*logaritmo;
         document.getElementById("ResistividadeHaste").innerText = String(RHaste.toFixed(4));
         document.getElementById("continuarButton").style.display = "flex";
+        document.getElementById("unidadeResistenciaHaste").style.display = "flex";
     }
 }
 
 function abrirMenu(){
     document.getElementById("ResistividadeCard").style.display = "none";
+    document.getElementById("unidadeResistenciaHaste").style.display = "none";
     document.getElementById("menuArranjo").style.display = "flex";
 }
 
