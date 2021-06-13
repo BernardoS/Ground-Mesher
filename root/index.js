@@ -1,5 +1,4 @@
 function calculaRHaste(){
-    ResistividadeCard.classList.toggle('animar');
     const ResistividadeSolo = Number(document.getElementById("ResistividadeSolo").value);
     const ComprimentoHaste = Number(document.getElementById("ComprimentoHaste").value);
     const DiametroHaste = Number(document.getElementById("DiametroHaste").value)*0.0254;
@@ -18,12 +17,16 @@ function calculaRHaste(){
 function abrirMenu(){
     document.getElementById("ResistividadeCard").style.display = "none";
     document.getElementById("unidadeResistenciaHaste").style.display = "none";
+    document.getElementById("passoUm").classList.toggle("passoSelecionado");
+    document.getElementById("passoDois").classList.toggle("passoSelecionado");
     document.getElementById("menuArranjo").style.display = "flex";
 }
 
 
 function processaMenu(){
     const opcao = String(document.getElementById("tiposAterramento").value);
+    document.getElementById("passoDois").classList.toggle("passoSelecionado");
+    document.getElementById("passoTres").classList.toggle("passoSelecionado");
     switch (opcao) {
         case 'linear':
             document.getElementById("configHasteLinear").style.display = "flex";
@@ -253,6 +256,8 @@ function processaHasteCircular(){
 }
 
 function exibeResultado(resultado,RHaste,classe){
+    document.getElementById("passoTres").classList.toggle("passoSelecionado");
+    document.getElementById("passoQuatro").classList.toggle("passoSelecionado");
     document.getElementById(classe).style.display = "none";
     document.getElementById("resultados").style.display = "flex";
     document.getElementById("unidadeResistencia").style.display = "flex";
@@ -282,6 +287,9 @@ function voltarAoInicio(){
     document.getElementById("RaioCirculo").value = null;
     document.getElementById("QtdHastesMalha").value = null;
     document.getElementById("ResistividadeHaste").innerText = "...";
+    document.getElementById("passoQuatro").classList.remove("passoSelecionado");
+    document.getElementById("passoUm").classList.add("passoSelecionado");
+    
     
     
 
