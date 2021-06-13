@@ -1,3 +1,4 @@
+//função responsável por calcular a resistência individual de uma haste
 function calculaRHaste(){
     const ResistividadeSolo = Number(document.getElementById("ResistividadeSolo").value);
     const ComprimentoHaste = Number(document.getElementById("ComprimentoHaste").value);
@@ -13,7 +14,7 @@ function calculaRHaste(){
         document.getElementById("unidadeResistenciaHaste").style.display = "flex";
     }
 }
-
+//função responsável por abrir menu
 function abrirMenu(){
     document.getElementById("ResistividadeCard").style.display = "none";
     document.getElementById("unidadeResistenciaHaste").style.display = "none";
@@ -21,8 +22,7 @@ function abrirMenu(){
     document.getElementById("passoDois").classList.toggle("passoSelecionado");
     document.getElementById("menuArranjo").style.display = "flex";
 }
-
-
+//função responsável por processar a opção escolhida no menu
 function processaMenu(){
     const opcao = String(document.getElementById("tiposAterramento").value);
     document.getElementById("passoDois").classList.toggle("passoSelecionado");
@@ -53,7 +53,7 @@ function processaMenu(){
     }
     
 }
-
+//faz o cálculo da resistência equivalente de um arranjo com hastes dispostas em formato de malha(quadrado cheio)
 function processaHasteMalha(){
     const QtdHastes = Number(document.getElementById("QtdHastesMalha").value);
     const DistanciaHaste = Number(document.getElementById("DistanciaHasteMalha").value);
@@ -86,9 +86,6 @@ function processaHasteMalha(){
         const bhm = calculaBhm(ComprimentoHaste,posicaoHaste,QtdHastes);
         const rhm = calculaRhm(ResistividadeSolo,ComprimentoHaste,posicaoHaste,bhm,QtdHastes);
         const ResistenciaComMutua = calculaResistenciaComMutua(rhm,QtdHastes,RHaste);
-
-        //console.log(rhm);
-        //console.log(bhm);
         var resistenciaEquivalenteInv=0;
         for(var x = 0;x<QtdHastes; x++){
             resistenciaEquivalenteInv += 1/ResistenciaComMutua[x]; 
@@ -98,7 +95,7 @@ function processaHasteMalha(){
         draw(posicaoHaste);
     }
 }
-
+//faz o cálculo da resistência equivalente de um arranjo com hastes dispostas em formato de quadrado
 function processaHasteQuadrado(){
     const QtdHastes = Number(document.getElementById("QtdHastesQuadrado").value);
     const DistanciaHaste = Number(document.getElementById("DistanciaHasteQuadrado").value);
@@ -116,7 +113,6 @@ function processaHasteQuadrado(){
         alert("Digite um número maior");
     }else{
         var posicaoHaste = [{x:0,y:0}];
-        //base
         for(var i =1; i<= QtdHastes/4 ;i++ ){
             var x = DistanciaHaste*i ;
             var y = 0;
@@ -139,16 +135,10 @@ function processaHasteQuadrado(){
                 posicaoHaste.push({x,y});
             }    
         }
-        console.log(posicaoHaste);
-        
         
         const bhm = calculaBhm(ComprimentoHaste,posicaoHaste,QtdHastes);
         const rhm = calculaRhm(ResistividadeSolo,ComprimentoHaste,posicaoHaste,bhm,QtdHastes);
         const ResistenciaComMutua = calculaResistenciaComMutua(rhm,QtdHastes,RHaste);
-
-        console.log(rhm);
-        //console.log(bhm);
-
         
         var resistenciaEquivalenteInv=0;
         for(var x = 0;x<QtdHastes; x++){
@@ -159,8 +149,7 @@ function processaHasteQuadrado(){
         draw(posicaoHaste);
     }
 }
-
-
+//faz o cálculo da resistência equivalente de um arranjo com hastes dispostas em formato de triangulo
 function processaHasteTriangular(){
     const QtdHastes = Number(document.getElementById("QtdHastesTriangular").value);
     const DistanciaHaste = Number(document.getElementById("DistanciaHasteTriangular").value);
@@ -169,7 +158,6 @@ function processaHasteTriangular(){
     const ComprimentoHaste = Number(document.getElementById("ComprimentoHaste").value);
     const DiametroHaste = Number(document.getElementById("DiametroHaste").value)*0.0254;
 
-    //variáveis calculadas
     const logaritmo = Math.log((4*ComprimentoHaste)/DiametroHaste);
     const RHaste = (ResistividadeSolo/(2*Math.PI*ComprimentoHaste))*logaritmo;
 
@@ -177,19 +165,16 @@ function processaHasteTriangular(){
         alert("Digite uma quantidade de Hastes Múltipla de 3");
     } else {
         var posicaoHaste =[{x:0,y:0}];
-        //base
         for(var i = 1; i <= QtdHastes/3 ; i++){
             var x = DistanciaHaste*i;
             var y = 0;
             posicaoHaste.push({x,y});
         }
-        //lado 1
         for(var i = 1; i <= QtdHastes/3 ; i++){
             var x = (DistanciaHaste/2)*i;
             var y = (DistanciaHaste*((Math.sqrt(3))/2))*i;
             posicaoHaste.push({x,y});
         }
-        //lado 2
         for(var i = 1; i < QtdHastes/3 ; i++){
             var pontoBase = (QtdHastes/3)*DistanciaHaste;
             var x = pontoBase - (DistanciaHaste/2)*i;
@@ -206,29 +191,23 @@ function processaHasteTriangular(){
             resistenciaEquivalenteInv += 1/ResistenciaComMutua[x]; 
         }
         var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
-        //console.log(resistenciaEquivalente);
         exibeResultado(resistenciaEquivalente,RHaste,"configHasteTriangulo");
         draw(posicaoHaste);
     }
 }
-
-//Função responsável pelo cálculo das Hastes Circulares
+//faz o cálculo da resistência equivalente de um arranjo com hastes dispostas circularmente
 function processaHasteCircular(){
-        //variáveis captadas
         const QtdHastes = Number(document.getElementById("QtdHastesCircular").value);
         const RaioCirculo = Number(document.getElementById("RaioCirculo").value);
 
         const ResistividadeSolo = Number(document.getElementById("ResistividadeSolo").value);
         const ComprimentoHaste = Number(document.getElementById("ComprimentoHaste").value);
         const DiametroHaste = Number(document.getElementById("DiametroHaste").value)*0.0254;
-        //variáveis calculadas
+
         const logaritmo = Math.log((4*ComprimentoHaste)/DiametroHaste);
         const RHaste = (ResistividadeSolo/(2*Math.PI*ComprimentoHaste))*logaritmo;
         
-
-
         const baseAngle = (Math.PI*(360/QtdHastes))/180;
-
 
         var posicaoHaste = [];
         for (let i = 0; i < QtdHastes; i++) {
@@ -250,11 +229,10 @@ function processaHasteCircular(){
             let ReqCirculo = ((RHaste/QtdHastes)*(1+(B/2)+(B*somatorio)));
             
             exibeResultado(ReqCirculo,RHaste,"configHasteCircular");
-            
         }
         draw(posicaoHaste);
 }
-
+//Exibe o resutlado dos cálculos
 function exibeResultado(resultado,RHaste,classe){
     document.getElementById("passoTres").classList.toggle("passoSelecionado");
     document.getElementById("passoQuatro").classList.toggle("passoSelecionado");
@@ -264,6 +242,7 @@ function exibeResultado(resultado,RHaste,classe){
     document.getElementById("FatorK").innerText = `${String((resultado/RHaste).toFixed(4))}`;
     document.getElementById("ResistenciaEquivalente").innerText =`${String(resultado.toFixed(4))}`;
 }
+//Volta a página inicial do programa
 function voltarAoInicio(){
     document.getElementById("ResistividadeCard").style.display = "flex";
     document.getElementById("resultados").style.display = "none";
@@ -290,19 +269,13 @@ function voltarAoInicio(){
     document.getElementById("passoQuatro").classList.remove("passoSelecionado");
     document.getElementById("passoUm").classList.add("passoSelecionado");
     
-    
-    
-
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-
-
-//Função responsável pelo cálculo das Hastes Lineares
+//faz o cálculo da resistência equivalente de um arranjo com hastes dispostas linearmente
 function processaHasteLinear(){
-    //variáveis captadas
+
     const QtdHastes = Number(document.getElementById("QtdHastesLinear").value);
     const DistanciaHaste = Number(document.getElementById("DistanciaHasteLinear").value);
 
@@ -324,70 +297,57 @@ function processaHasteLinear(){
         })
     }
 
-    
     const bhm = calculaBhm(ComprimentoHaste,posicaoHaste,QtdHastes);
     const rhm = calculaRhm(ResistividadeSolo,ComprimentoHaste,posicaoHaste,bhm,QtdHastes);
     const ResistenciaComMutua = calculaResistenciaComMutua(rhm,QtdHastes,RHaste);
-
-    //console.log(bhm);
 
     var resistenciaEquivalenteInv=0;
     for(var x = 0;x<QtdHastes; x++){
         resistenciaEquivalenteInv += 1/ResistenciaComMutua[x]; 
     }
     var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
-    //console.log(resistenciaEquivalente);
     exibeResultado(resistenciaEquivalente,RHaste,"configHasteLinear");
     draw(posicaoHaste);
     }
     
 }
-
-
-
+//calcula BHM
 function calculaBhm(comprimentoHaste,posicaoHaste,qtdHastes){
     let bhm = criaMatrizZero(qtdHastes,qtdHastes);
 
     for(var i = 0; i<qtdHastes;i++){
         for(var j = 0; j<qtdHastes;j++){
-            
-            
             let distancia= distanciaRelativa(posicaoHaste[i],posicaoHaste[j]);
             if((i!=j) && (bhm[i][j]==0)){
-                //console.log(`Distancia relativa:[${distancia}]`);
-                //console.log(`Comprimento Haste:[${comprimentoHaste}]`);
                 bhm[i][j] = Math.sqrt(Math.pow(distancia,2)+Math.pow(comprimentoHaste,2));
                 bhm[j][i] = Math.sqrt(Math.pow(distancia,2)+Math.pow(comprimentoHaste,2));
-                //console.log(`posicao[${i}][${j}]:${bhm[i][j]}`);
             }
         }
     }
-    console.log(bhm);
     return bhm;
 }
+//calcular a distância entre 2 pontos no plano x y
 function distanciaRelativa(pos1,pos2){
     let distancia = Math.sqrt(Math.pow((pos1.x-pos2.x),2) + Math.pow((pos1.y-pos2.y),2));  
     return distancia;
 }
-
+//cria uma matriz preenchida por zeros
 function criaMatrizZero(linhas,colunas){
     const matrizZero=[];
     for(var i = 0; i<linhas;i++){
         matrizZero.push(criaVetorzero(colunas));
     } 
-    //console.log(matrizZero);
     return matrizZero;
 }
-
+//cria um vetor preenchido por zeros
 function criaVetorzero(colunas){
     const vetorZero = [];
     for(var i = 0; i<colunas;i++){
         vetorZero.push(0);
     }
-    //console.log(vetorZero);
     return vetorZero;
 }
-
+//calcular RHM
 function calculaRhm(resistividadeSolo,comprimentoHaste,posicaoHaste,bhm,qtdHastes){
     let rhm = criaMatrizZero(qtdHastes,qtdHastes);
     for(var i = 0; i<qtdHastes;i++){
@@ -402,16 +362,16 @@ function calculaRhm(resistividadeSolo,comprimentoHaste,posicaoHaste,bhm,qtdHaste
             }
         }
     }
-    //console.log(rhm);
+
     return rhm;
 }
-
+//calcula a resistência com a influência mutuas
 function calculaResistenciaComMutua(rhm,qtdHastes,rHaste){
     let resistenciaComMutua = criaVetorzero(qtdHastes);
-    //console.log(resistenciaComMutua);
+
     for(var i = 0; i<qtdHastes;i++){
         resistenciaComMutua[i] += rHaste;
-        //console.log(resistenciaComMutua[i]);
+
         for(var n = 0; n<qtdHastes;n++){
             resistenciaComMutua[i] += rhm[i][n];
         }
@@ -420,12 +380,11 @@ function calculaResistenciaComMutua(rhm,qtdHastes,rHaste){
     console.log(resistenciaComMutua);
     return resistenciaComMutua;
 }
-
+//desenha as posições das hastes
 function draw(points) {
-    //var points =[{x:0,y:0},{x:0,y:1},{x:1,y:0},{x:1,y:1}];
-    //var distanciaMaxima = qtdHastes*distanciaHaste;
+
     var valorMax = maxValue(points);
-    //console.log(valorMax);
+
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
         var context = canvas.getContext("2d");
@@ -434,14 +393,10 @@ function draw(points) {
         var alturaPlotagem = canvas.height-60;
         var basePoint = 30;
       points.forEach(point => {
-        //console.log(point.x);
-        //console.log(point.y);
+
         var coordenadaX = valorMax.x==0?0:(point.x/valorMax.x)*larguraPlotagem;
         var coordenadaY = valorMax.y==0?0:(point.y/valorMax.y)*alturaPlotagem;
-        //console.log(coordenadaX);
-        //console.log(coordenadaY);
-        //ctx.fillStyle = "rgb(82, 141, 241)";
-        //ctx.fillRect (0,0,25,25);
+
     
         context.beginPath();
         context.arc((coordenadaX)+basePoint, (coordenadaY)+basePoint, radius, 0, 2 * Math.PI, false);
@@ -453,10 +408,9 @@ function draw(points) {
         
       });
       
-      //ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-      //ctx.fillRect (30, 30, 55, 50);
     }
 }
+//retorna o valor máximo dentro da matriz de posicoes
 function maxValue(matrizPosicao){
     var valorMaxX = 0;
     var valorMaxY = 0; 
