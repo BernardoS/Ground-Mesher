@@ -91,7 +91,7 @@ function processaHasteMalha(){
             resistenciaEquivalenteInv += 1/ResistenciaComMutua[x]; 
         }
         var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
-        exibeResultado(resistenciaEquivalente,"configHasteMalha");
+        exibeResultado(resistenciaEquivalente,RHaste,"configHasteMalha");
         draw(posicaoHaste);
     }
 }
@@ -152,7 +152,7 @@ function processaHasteQuadrado(){
             resistenciaEquivalenteInv += 1/ResistenciaComMutua[x]; 
         }
         var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
-        exibeResultado(resistenciaEquivalente,"configHasteQuadrado");
+        exibeResultado(resistenciaEquivalente,RHaste,"configHasteQuadrado");
         draw(posicaoHaste);
     }
 }
@@ -204,7 +204,7 @@ function processaHasteTriangular(){
         }
         var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
         //console.log(resistenciaEquivalente);
-        exibeResultado(resistenciaEquivalente,"configHasteTriangulo");
+        exibeResultado(resistenciaEquivalente,RHaste,"configHasteTriangulo");
         draw(posicaoHaste);
     }
 }
@@ -246,16 +246,17 @@ function processaHasteCircular(){
                 }
             let ReqCirculo = ((RHaste/QtdHastes)*(1+(B/2)+(B*somatorio)));
             
-            exibeResultado(ReqCirculo,"configHasteCircular");
+            exibeResultado(ReqCirculo,RHaste,"configHasteCircular");
             
         }
         draw(posicaoHaste);
 }
 
-function exibeResultado(resultado,classe){
+function exibeResultado(resultado,RHaste,classe){
     document.getElementById(classe).style.display = "none";
     document.getElementById("resultados").style.display = "flex";
     document.getElementById("unidadeResistencia").style.display = "flex";
+    document.getElementById("FatorK").innerText = `${String((resultado/RHaste).toFixed(4))}`;
     document.getElementById("ResistenciaEquivalente").innerText =`${String(resultado.toFixed(4))}`;
 }
 function voltarAoInicio(){
@@ -328,7 +329,7 @@ function processaHasteLinear(){
     }
     var resistenciaEquivalente = 1/resistenciaEquivalenteInv;
     //console.log(resistenciaEquivalente);
-    exibeResultado(resistenciaEquivalente,"configHasteLinear");
+    exibeResultado(resistenciaEquivalente,RHaste,"configHasteLinear");
     draw(posicaoHaste);
     }
     
